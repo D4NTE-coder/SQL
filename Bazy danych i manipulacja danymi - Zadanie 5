@@ -1,0 +1,32 @@
+CREATE DATABASE Moje_Zainteresowania;
+
+CREATE TABLE Zainteresowania (
+ID INTEGER,
+Nazwa TEXT,
+Opis TEXT,
+Data_Realizacji DATE
+);
+
+INSERT INTO Zainteresowania (Nazwa,Opis) VALUES ("Programowanie","Tworzenie aplikacji w Pythonie");
+INSERT INTO Zainteresowania (Nazwa, Opis) VALUES ('Sport', 'Siłownia, bieganie i aktywny tryb życia');
+INSERT INTO Zainteresowania (Nazwa, Opis) VALUES ('Muzyka', 'Słuchanie muzyki i nauka gry na gitarze');
+INSERT INTO Zainteresowania (Nazwa, Opis) VALUES ('Podróże', 'Zwiedzanie nowych miejsc i poznawanie kultur');
+INSERT INTO Zainteresowania (Nazwa, Opis) VALUES ('Technologia', 'Nowinki technologiczne i rozwój IT');
+
+SELECT * FROM Zainteresowania;
+
+INSERT INTO Zainteresowania VALUES (6, 'Fotografia', 'Fotografia krajobrazowa i portretowa', '2024-06-15');
+
+UPDATE Zainteresowania
+SET ID = 4 , Data_Realizacji = "2026-12-30"
+WHERE Nazwa = "Podróże";
+
+SELECT * FROM ZAINTERESOWANIA;
+
+DELETE FROM Zainteresowania
+WHERE ID IS NULL
+   OR Nazwa IS NULL
+   OR Opis IS NULL
+   OR Data_Realizacji IS NULL;
+   
+SELECT * FROM ZAINTERESOWANIA;
