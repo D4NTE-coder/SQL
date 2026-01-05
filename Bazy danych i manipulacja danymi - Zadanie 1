@@ -1,0 +1,39 @@
+CREATE DATABASE biblioteka;
+
+CREATE TABLE biblioteka.biblioteczka (
+id INTEGER,
+title TEXT,
+date DATE
+);
+
+INSERT INTO biblioteczka VALUES (1, "Harry_Potter_i_Czara_Ognia", "2005-11-25");
+
+select * from biblioteczka;
+
+INSERT INTO biblioteczka VALUES (2, "Maly_Ksiaze", "1943-04-06");
+INSERT INTO biblioteczka VALUES (3, "Sezon_Burz", "2013-11-06");
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE biblioteczka SET id = "1" WHERE title= "Sezon_Burz";
+UPDATE biblioteczka SET id = "3" WHERE title= "Harry_Potter_i_Czara_Ognia";
+SET SQL_SAFE_UPDATES = 1; 
+
+select * from biblioteczka;
+
+ALTER TABLE biblioteczka 
+ADD COLUMN Autor TEXT;
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE biblioteczka SET Autor = "Andrzej_Sapkowski" WHERE title= "Sezon_Burz";
+UPDATE biblioteczka SET Autor = "Antoine_de_Saint-Exupéry" WHERE title= "Maly_Ksiaze";
+UPDATE biblioteczka SET Autor = "J.K.ROWLLING" WHERE title= "Harry_Potter_i_Czara_Ognia";
+SET SQL_SAFE_UPDATES = 1; 
+
+select * from biblioteczka;
+
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM biblioteczka
+WHERE id IN (1,3);
+SET SQL_SAFE_UPDATES = 1; 
+
+select Autor from biblioteczka;
