@@ -1,0 +1,30 @@
+CREATE DATABASE Lista_Pracownikow;
+
+CREATE TABLE Pracownicy (
+ID INTEGER,
+Imie TEXT,
+Nazwisko TEXT,
+Stanowisko TEXT,
+Dzial TEXT
+);
+
+INSERT INTO Pracownicy VALUES (1, "Damian", "Rojek", "Programista", "IT");
+INSERT INTO Pracownicy VALUES (2, 'Michał', 'Majorczyk', 'Tester', 'IT');
+INSERT INTO Pracownicy VALUES (3, 'Anna', 'Kowalska', 'Księgowa', 'Finanse');
+INSERT INTO Pracownicy VALUES (4, 'Paweł', 'Nowak', 'Analityk', 'Biznes');
+INSERT INTO Pracownicy VALUES (5, 'Katarzyna', 'Wiśniewska', 'HR Specialist', 'HR');
+
+SELECT * FROM Pracownicy;
+
+ALTER TABLE Pracownicy
+ADD COLUMN Data_zatrudnienia DATE;
+
+INSERT INTO Pracownicy VALUES (6, 'Martyna', 'Czyzewska', 'Tester', 'IT', "2024-10-17");
+
+SELECT * FROM Pracownicy;
+
+UPDATE Pracownicy	
+SET Data_zatrudnienia = "2020-01-01"
+WHERE ID IN (1,2,3,4,5);
+
+SELECT * FROM Pracownicy;
