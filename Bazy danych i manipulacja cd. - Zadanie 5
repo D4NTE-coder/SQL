@@ -1,0 +1,49 @@
+CREATE DATABASE Pracownicy;
+
+create table pracownicy (
+ID INT PRIMARY KEY AUTO_INCREMENT,
+Imie varchar(50),
+Nazwisko varchar(50),
+Wiek INT,
+Kurs varchar(50)
+);
+
+INSERT INTO Pracownicy (Imie, Nazwisko, Wiek, Kurs) VALUES
+('Anna', 'NOWAK', 34, 'DS.'),
+('Roman', 'KOWALSKI', 42, 'DS.'),
+('Tomasz', 'WIŚNIEWSKI', 33, 'DS.'),
+('Anna', NULL, 43, 'DS.'),
+('Elżbieta', 'KOWALCZYK', NULL, 'Tester'),
+('Anna', 'KOWALCZYK', NULL, 'Java'),
+('Robert', 'KOWALCZYK', NULL, 'Java'),
+('Radosław', 'ZIELIŃSKI', NULL, 'Java'),
+('Robert', 'WOŹNIAK', NULL, 'Java'),
+('Robert', 'SZYMAŃSKI', 34, 'Tester'),
+('Radosław', 'DĄBROWSKI', 35, NULL),
+('Robert', 'KOZŁOWSKI', NULL, 'UX'),
+('Joanna', 'MAZUR', 26, 'UX'),
+('Radosław', 'JANKOWSKI', 27, 'UX'),
+('Patryk', 'LEWANDOWSKI', 28, NULL),
+(NULL, 'ZIELIŃSKI', 28, NULL),
+('Andrzej', 'WOŹNIAK', 31, NULL),
+('Andrze', 'LEWANDOWSKI', 30, NULL),
+('Roman', 'KOWALCZYK', 39, NULL),
+('Ewa', 'WOŹNIAK', 31, NULL);
+
+select distinct imie from pracownicy;
+
+select distinct nazwisko from pracownicy;
+
+select kurs from pracownicy
+where nazwisko = "KOWALCZYK";
+
+select * from pracownicy
+where wiek is null;
+
+select wiek from pracownicy
+where imie = "Patryk";
+
+alter table Pracownicy
+rename to Mentorzy;
+
+select * from Mentorzy
