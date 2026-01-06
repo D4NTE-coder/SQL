@@ -1,11 +1,11 @@
 CREATE DATABASE Lista_Pracownikow;
 
 CREATE TABLE Pracownicy (
-ID INTEGER,
-Imie TEXT,
-Nazwisko TEXT,
-Stanowisko TEXT,
-Dzial TEXT
+    ID INTEGER PRIMARY KEY,
+    Imie VARCHAR(50) NOT NULL,
+    Nazwisko VARCHAR(50) NOT NULL,
+    Stanowisko VARCHAR(50) NOT NULL,
+    Dzial VARCHAR(50) NOT NULL
 );
 
 INSERT INTO Pracownicy VALUES (1, "Damian", "Rojek", "Programista", "IT");
