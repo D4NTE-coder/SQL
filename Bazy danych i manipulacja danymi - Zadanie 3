@@ -1,11 +1,11 @@
 CREATE DATABASE Lista_Prezentow;
 
 CREATE TABLE Prezenty_2020 (
-ID INTEGER,
-Imie_Obdarowanego TEXT,
-Pomysl_na_prezent TEXT,
-Cena DECIMAL(10,2),
-Miejsce_zakupu TEXT
+ID INTEGER PRIMARY KEY,
+Imie_Obdarowanego VARCHAR(50) NOT NULL,
+Pomysl_na_prezent VARCHAR(100) NOT NULL,
+Cena DECIMAL(10,2) NOT NULL CHECK (Cena >= 0),
+Miejsce_zakupu VARCHAR(50) NOT NULL
 );
 
 INSERT INTO Prezenty_2020 VALUES(1, "Damian", "Szczoteczka_Soniczna", 649.99, "Rossman");
