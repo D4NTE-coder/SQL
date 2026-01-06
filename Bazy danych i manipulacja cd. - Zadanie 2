@@ -4,7 +4,7 @@ create table pracownicy (
 ID INT PRIMARY KEY AUTO_INCREMENT,
 Imie varchar(50),
 Nazwisko varchar(50),
-Wiek tinyint unsigned not null check (Wiek BETWEEN 0 AND 120),
+Wiek INT,
 Kurs varchar(50)
 );
 
