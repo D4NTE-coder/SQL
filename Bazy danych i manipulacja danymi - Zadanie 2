@@ -37,9 +37,9 @@ select * FROM Mentors
 WHERE  id = 9;
 
 ALTER TABLE Mentors 
-ADD COLUMN Wynagrodzenie INTEGER;
+ADD COLUMN Wynagrodzenie INTEGER NOT NULL;
 
-UPDATE Mentors SET Wynagrodzenie = "1000" WHERE id IN (1,2,3);
+UPDATE Mentors SET Wynagrodzenie = 1000 WHERE id IN (1,2,3);
 
 SELECT * FROM Mentors
 WHERE id IN (1,2,3);
