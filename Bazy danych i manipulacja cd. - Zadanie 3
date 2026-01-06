@@ -1,0 +1,52 @@
+CREATE DATABASE Pracownicy;
+
+create table pracownicy (
+ID INT PRIMARY KEY AUTO_INCREMENT,
+Imie varchar(50),
+Nazwisko varchar(50),
+Wiek INT,
+Kurs varchar(50)
+);
+
+INSERT INTO Pracownicy (Imie, Nazwisko, Wiek, Kurs) VALUES
+('Anna', 'NOWAK', 34, 'DS.'),
+('Roman', 'KOWALSKI', 42, 'DS.'),
+('Tomasz', 'WIŚNIEWSKI', 33, 'DS.'),
+('Agata', 'WÓJCIK', 43, 'DS.'),
+('Elżbieta', 'KOWALCZYK', 28, 'Java'),
+('Przemysław', 'KOWALCZYK', 34, 'Java'),
+('Robert', 'KOWALCZYK', 35, 'Java'),
+('Radosław', 'ZIELIŃSKI', 38, 'Java'),
+(NULL, 'WOŹNIAK', 26, 'Java'),
+('Robert', 'SZYMAŃSKI', 34, 'Java'),
+('Radosław', 'DĄBROWSKI', 35, NULL),
+('Robert', 'KOZŁOWSKI', NULL, 'UX'),
+('Joanna', 'MAZUR', 26, 'UX'),
+('Radosław', 'JANKOWSKI', 27, 'UX'),
+('Patryk', 'LEWANDOWSKI', 28, 'Tester'),
+(NULL, 'ZIELIŃSKI', 28, 'Tester'),
+('Andrzej', 'WOŹNIAK', 31, 'Tester'),
+('Andrze', 'LEWANDOWSKI', 30, 'Tester'),
+('Roman', 'KOWALCZYK', 39, 'Tester'),
+('Ewa', 'WOŹNIAK', 31, 'Tester');
+
+select * from pracownicy
+where Nazwisko = "KOWALCZYK";
+
+select * from pracownicy
+where wiek between 30 and 40;
+
+select * from pracownicy
+where Nazwisko not like "%and%";
+
+select * from pracownicy
+where id between 1 and 7;
+
+select * from pracownicy
+where imie is null
+or nazwisko is null
+or wiek is null
+or kurs is null;
+
+select * from pracownicy
+where kurs is null;
