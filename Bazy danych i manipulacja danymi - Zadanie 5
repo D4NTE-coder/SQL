@@ -1,10 +1,10 @@
 CREATE DATABASE Moje_Zainteresowania;
 
 CREATE TABLE Zainteresowania (
-ID INTEGER,
-Nazwa TEXT,
-Opis TEXT,
-Data_Realizacji DATE
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Nazwa VARCHAR(100) NOT NULL,
+    Opis TEXT NOT NULL,
+    Data_Realizacji DATE DEFAULT NULL
 );
 
 INSERT INTO Zainteresowania (Nazwa,Opis) VALUES ("Programowanie","Tworzenie aplikacji w Pythonie");
