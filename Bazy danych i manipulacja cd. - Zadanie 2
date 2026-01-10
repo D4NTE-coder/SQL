@@ -42,11 +42,11 @@ where nazwisko like "%ski";
 select * from pracownicy
 where nr in (1,4,7,18,20);
 
-select * from pracownicy
-where imie is not null
-or nazwisko is not null
-or wiek is not null
-or kurs is not null;
+select * from Pracownicy
+where Imie IS NOT NULL
+and Nazwisko IS NOT NULL
+and Wiek IS NOT NULL
+and Kurs IS NOT NULL;
 
 select * from pracownicy
 where Kurs not like "%DS"
