@@ -1,0 +1,171 @@
+
+CREATE DATABASE Sklep_odziezowy;
+USE Sklep_odziezowy;
+
+
+create table Producenci (
+id_producenta int primary key auto_increment,
+nazwa_producenta VARCHAR(100) NOT NULL,
+adres_producenta VARCHAR(100) NOT NULL,
+nip_producenta CHAR(10) UNIQUE NOT NULL,
+data_umowy DATE NOT NULL);
+
+
+create table Produkty(
+id_produktu int primary key auto_increment,
+id_producenta int not null,
+nazwa_produktu VARCHAR(100) not null,
+opis_produktu text,
+cena_netto_zakupu DECIMAL(10,2) not null check(cena_netto_zakupu >=0),
+cena_brutto_zakupu DECIMAL(10,2) not null check(cena_brutto_zakupu >=0),
+cena_netto_sprzedazy DECIMAL(10,2) not null check(cena_netto_sprzedazy >=0),
+cena_brutto_sprzedazy DECIMAL(10,2) not null check(cena_brutto_sprzedazy >=0),
+vat_procent int not null check (vat_procent in (5,8,23)),
+foreign key (id_producenta) references Producenci(id_producenta));
+
+
+create table Klienci(
+id_klienta int primary key auto_increment,
+imie VARCHAR(50) not null,
+nazwisko VARCHAR(50) not null,
+adres VARCHAR(200) not null);
+
+create table Zamowienia (
+id_zamowienia int primary key auto_increment,
+id_klienta int not null,
+id_produktu int not null,
+data_zamowienia date not null,
+foreign key (id_klienta) references Klienci(id_klienta),
+foreign key (id_produktu) references Produkty(id_produktu));
+
+
+INSERT INTO Producenci VALUES
+(NULL,'Nike','USA, Oregon','123456789','2020-01-01'),
+(NULL,'Adidas','Germany, Berlin','234567890','2019-05-10'),
+(NULL,'Puma','Germany, Herzogenaurach','345678901','2021-03-15'),
+(NULL,'Reebok','UK, London','456789012','2022-07-01');
+
+
+INSERT INTO Produkty VALUES
+(NULL,1,'Koszulka Air Flex','Oddychająca koszulka sportowa',50,61.50,80,98.40,23),
+(NULL,1,'Spodnie Run Pro','Spodnie do biegania',100,123,150,184.50,23),
+(NULL,1,'Bluza Street Hoodie','Bluza z kapturem',120,147.60,200,246,23),
+(NULL,1,'Buty Fly Runner','Buty biegowe',300,369,450,553.50,23),
+(NULL,1,'Czapka Urban Cap','Czapka z daszkiem',30,36.90,60,73.80,23),
+
+
+(NULL,2,'Koszulka Training Max','Koszulka treningowa',55,67.65,85,104.55,23),
+(NULL,2,'Spodnie Comfort Jogger','Spodnie dresowe',95,116.85,145,178.35,23),
+(NULL,2,'Bluza Power Fit','Bluza sportowa',130,159.90,210,258.30,23),
+(NULL,2,'Buty Goal Control','Buty piłkarskie',320,393.60,480,590.40,23),
+(NULL,2,'Czapka Winter Shield','Czapka zimowa',35,43.05,65,79.95,23),
+
+
+(NULL,3,'Koszulka Summer Light','Koszulka letnia',45,55.35,70,86.10,23),
+(NULL,3,'Spodnie Outdoor Trek','Spodnie outdoorowe',110,135.30,160,196.80,23),
+(NULL,3,'Bluza Polar Warm','Bluza polarowa',140,172.20,220,270.60,23),
+(NULL,3,'Buty Mountain Grip','Buty trekkingowe',350,430.50,520,639.60,23),
+(NULL,3,'Czapka Active Sport','Czapka sportowa',25,30.75,50,61.50,23),
+
+
+(NULL,4,'Koszulka Classic Tee','Koszulka klasyczna',40,49.20,65,79.95,23),
+(NULL,4,'Spodnie Cotton Relax','Spodnie bawełniane',90,110.70,140,172.20,23),
+(NULL,4,'Bluza Casual Wear','Bluza codzienna',125,153.75,195,239.85,23),
+(NULL,4,'Buty City Walk','Buty lifestyle',280,344.40,420,516.60,23),
+(NULL,4,'Czapka Street Style','Czapka miejska',28,34.44,55,67.65,23);
+
+
+INSERT INTO Klienci VALUES
+(NULL,'Jan','Kowalski','Warszawa'),
+(NULL,'Anna','Nowak','Kraków'),
+(NULL,'Piotr','Wiśniewski','Gdańsk'),
+(NULL,'Maria','Zielińska','Poznań'),
+(NULL,'Tomasz','Lewandowski','Wrocław'),
+(NULL,'Agnieszka','Kamińska','Łódź'),
+(NULL,'Paweł','Dąbrowski','Katowice'),
+(NULL,'Katarzyna','Wójcik','Lublin'),
+(NULL,'Robert','Mazur','Rzeszów'),
+(NULL,'Monika','Kaczmarek','Szczecin');
+
+
+INSERT INTO Zamowienia VALUES
+(NULL,1,1,'2024-01-01'),
+(NULL,2,2,'2024-01-02'),
+(NULL,3,3,'2024-01-02'),
+(NULL,4,4,'2024-01-03'),
+(NULL,5,5,'2024-01-03'),
+(NULL,6,1,'2024-01-03'),
+(NULL,7,2,'2024-01-04'),
+(NULL,8,3,'2024-01-04'),
+(NULL,9,4,'2024-01-05'),
+(NULL,10,5,'2024-01-05');
+
+
+select p.*, pr.*
+from Produkty p
+join Producenci pr ON p.id_producenta = pr.id_producenta
+where pr.id_producenta = 1;
+
+
+select p.*,
+pr.nazwa_producenta
+from Produkty p
+JOIN Producenci pr
+on p.id_producenta = pr.id_producenta
+where pr.id_producenta = 1
+ORDER BY p.nazwa_produktu ASC;
+
+
+select avg(cena_brutto_sprzedazy) as srednia_cena
+from produkty
+Where id_Producenta = 1;
+
+
+select
+nazwa_produktu,
+case
+	when cena_brutto_sprzedazy <= (
+		select avg(cena_brutto_sprzedazy)
+		from Produkty
+        where id_producenta = 1)
+        then "Tanie"
+        else "Drogie"
+        end as grupa
+from Produkty
+where id_producenta =1;
+
+
+select distinct p.nazwa_produktu
+from Zamowienia z
+JOIN Produkty p ON z.id_produktu = p.id_produktu;
+
+select p.nazwa_produktu
+from Zamowienia z 
+JOIN Produkty p ON z.id_produktu = p.id_produktu
+LIMIT 5;
+
+
+Select SUM(p.cena_brutto_sprzedazy) as laczna_wartosc
+from Zamowienia z 
+join produkty p on z.id_produktu = p.id_produktu;
+
+
+select z.id_zamowienia, p.nazwa_produktu, z.data_zamowienia
+from Zamowienia z 
+JOIN produkty p ON z.id_produktu = p.id_produktu
+ORDER BY z.data_zamowienia ASC;
+
+
+SELECT p.nazwa_produktu, p.cena_brutto_sprzedazy, COUNT(*) AS ilosc
+FROM Zamowienia z
+JOIN Produkty p ON z.id_produktu = p.id_produktu
+GROUP BY p.id_produktu
+ORDER BY ilosc DESC
+LIMIT 1;
+
+
+SELECT data_zamowienia, COUNT(*) AS ilosc
+FROM Zamowienia
+GROUP BY data_zamowienia
+ORDER BY ilosc DESC
+LIMIT 1;
